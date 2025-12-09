@@ -32,5 +32,3 @@ start-app.sh
 test-db-connection.js
 SETUP.md
 STATUS.md
-
-src/

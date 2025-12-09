@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    container_name: leaderboard-db
+    environment:
+      POSTGRES_USER: gameuser
+      POSTGRES_PASSWORD: gamepass123
+      POSTGRES_DB: leaderboard
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

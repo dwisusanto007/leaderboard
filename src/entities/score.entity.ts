@@ -6,7 +6,7 @@ export class Score {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   playerName: string;
 
   @Column()

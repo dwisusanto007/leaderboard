@@ -21,6 +21,18 @@ export class ScoresService {
       throw new ForbiddenException('You can only submit scores for yourself');
     }
 
+    // Check if player already has a score
+    const existingScore = await this.scoreRepository.findOne({
+      where: { playerName: createScoreDto.playerName }
+    });
+
+    if (existingScore) {
+      // Update existing score with new score
+      existingScore.score = createScoreDto.score;
+      return this.scoreRepository.save(existingScore);
+    }
+
+    // Create new score if player doesn't exist
     const score = this.scoreRepository.create({
       playerName: createScoreDto.playerName,
       score: createScoreDto.score,
